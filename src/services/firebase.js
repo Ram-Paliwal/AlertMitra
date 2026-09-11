@@ -71,16 +71,17 @@ export { app, auth, db, analytics };
 
 /**
  * Sign in with Google Popup.
- * Falls back to instant simulated Google login if custom Firebase API key is not yet configured.
  */
 export async function signInWithGoogle() {
   if (isFirebaseConfigured && auth) {
     try {
+      // Clear any legacy mock user data
+      localStorage.removeItem('alertmitra_current_user');
       const result = await signInWithPopup(auth, googleProvider);
       const user = result.user;
       return {
         uid: user.uid,
-        displayName: user.displayName || 'AlertMitra Citizen',
+        displayName: user.displayName || user.email?.split('@')[0] || 'AlertMitra Citizen',
         email: user.email,
         photoURL: user.photoURL || `https://api.dicebear.com/7.x/bottts/svg?seed=${user.uid}`,
         isDemoUser: false
@@ -88,18 +89,22 @@ export async function signInWithGoogle() {
     } catch (error) {
       console.error('Firebase Google Sign-In error:', error);
       if (error.code === 'auth/popup-closed-by-user') {
-        throw new Error('Sign-in popup was closed.');
+        throw new Error('Sign-in popup was closed before completing login.');
+      } else if (error.code === 'auth/operation-not-allowed') {
+        throw new Error('Google Sign-In is not enabled in Firebase Console. Go to Authentication > Sign-in method > Google and enable it.');
+      } else if (error.code === 'auth/unauthorized-domain') {
+        throw new Error('This domain/localhost is not authorized in Firebase Console. Go to Authentication > Settings > Authorized domains.');
+      } else {
+        throw new Error(error.message || 'Failed to sign in with Google.');
       }
-      // If Firebase project setup error (e.g. auth domain not authorized), fallback to local session
-      console.warn('Falling back to local Google user profile session.');
     }
   }
 
-  // Fallback demo Google user session when Firebase keys aren't in .env yet
+  // Fallback demo user only when Firebase keys are strictly not configured
   const mockUser = {
     uid: 'google-user-' + Math.random().toString(36).substring(2, 9),
-    displayName: 'Aarav Sharma',
-    email: 'aarav.sharma@gmail.com',
+    displayName: 'Demo Citizen',
+    email: 'citizen.demo@alertmitra.org',
     photoURL: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80',
     isDemoUser: true
   };
@@ -111,6 +116,7 @@ export async function signInWithGoogle() {
  * Sign out current user
  */
 export async function logoutUser() {
+  localStorage.removeItem('alertmitra_current_user');
   if (isFirebaseConfigured && auth) {
     try {
       await signOut(auth);
@@ -118,7 +124,6 @@ export async function logoutUser() {
       console.error('Sign out error:', err);
     }
   }
-  localStorage.removeItem('alertmitra_current_user');
 }
 
 /**
@@ -126,6 +131,8 @@ export async function logoutUser() {
  */
 export function subscribeToAuth(callback) {
   if (isFirebaseConfigured && auth) {
+    // Clear any stale mock user cache when using live Firebase
+    localStorage.removeItem('alertmitra_current_user');
     return onAuthStateChanged(auth, (user) => {
       if (user) {
         callback({
@@ -136,12 +143,11 @@ export function subscribeToAuth(callback) {
           isDemoUser: false
         });
       } else {
-        const cached = localStorage.getItem('alertmitra_current_user');
-        callback(cached ? JSON.parse(cached) : null);
+        callback(null);
       }
     });
   } else {
-    // Local storage subscription
+    // Local storage subscription for offline demo mode
     const cached = localStorage.getItem('alertmitra_current_user');
     callback(cached ? JSON.parse(cached) : null);
     return () => {};

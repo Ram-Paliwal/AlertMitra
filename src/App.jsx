@@ -67,7 +67,8 @@ export default function App() {
       const user = await signInWithGoogle();
       setCurrentUser(user);
     } catch (err) {
-      console.warn('Google sign-in action:', err.message);
+      console.error('Google sign-in error:', err);
+      alert(err.message || 'Google Sign-In failed.');
     }
   };
 
