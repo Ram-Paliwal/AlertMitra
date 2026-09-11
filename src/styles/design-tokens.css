@@ -1,0 +1,65 @@
+:root {
+  /* AlertMitra Color System: Civic-Tech + Navigation Safety Command Center */
+  --bg-app: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-subtle: #f1f5f9;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-inverse: #ffffff;
+  
+  --border-subtle: #e2e8f0;
+  --border-medium: #cbd5e1;
+  --border-strong: #94a3b8;
+  
+  /* Semantic Risk Colors */
+  --risk-low: #10b981;
+  --risk-low-bg: #ecfdf5;
+  --risk-low-border: #a7f3d0;
+  
+  --risk-moderate: #f59e0b;
+  --risk-moderate-bg: #fffbeb;
+  --risk-moderate-border: #fde68a;
+  
+  --risk-high: #ef4444;
+  --risk-high-bg: #fef2f2;
+  --risk-high-border: #fecaca;
+  
+  --risk-critical: #b91c1c;
+  --risk-critical-bg: #450a0a;
+  
+  /* Feature Colors */
+  --color-brand: #0284c7;        /* Trustworthy navigation blue */
+  --color-brand-hover: #0369a1;
+  --color-brand-bg: #f0f9ff;
+  
+  --color-community: #2563eb;    /* Community blue */
+  --color-community-bg: #eff6ff;
+  
+  --color-system: #7c3aed;       /* Live/system purple */
+  --color-system-bg: #f5f3ff;
+  
+  --color-trystander: #0891b2;    /* Emergency Samaritan Cyan */
+  --color-trystander-bg: #ecfeff;
+  
+  /* UI Metrics & Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Outfit', 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.04);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+  
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+}
