@@ -1,4 +1,5 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
+import { getAnalytics, isSupported } from 'firebase/analytics';
 import {
   getAuth,
   signInWithPopup,
@@ -28,7 +29,8 @@ const firebaseConfig = {
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "alertmitra-safety",
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "alertmitra-safety.appspot.com",
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "102938475612",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:102938475612:web:9876543210abcdef"
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:102938475612:web:9876543210abcdef",
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || "G-6JFJEP3P0G"
 };
 
 // Check if valid Firebase project is configured
@@ -40,6 +42,7 @@ export const isFirebaseConfigured = Boolean(
 let app;
 let auth;
 let db;
+let analytics;
 let googleProvider;
 
 try {
@@ -48,11 +51,19 @@ try {
   db = getFirestore(app);
   googleProvider = new GoogleAuthProvider();
   googleProvider.setCustomParameters({ prompt: 'select_account' });
+  
+  if (typeof window !== 'undefined') {
+    isSupported().then((supported) => {
+      if (supported) {
+        analytics = getAnalytics(app);
+      }
+    }).catch(() => {});
+  }
 } catch (err) {
   console.warn('Firebase initialization warning:', err.message);
 }
 
-export { auth, db };
+export { app, auth, db, analytics };
 
 // ==========================================
 // AUTHENTICATION: GOOGLE SIGN-IN & SIGNOUT
