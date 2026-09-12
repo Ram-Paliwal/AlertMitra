@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Shield, Navigation, MapPin, Users, HeartHandshake, ShieldAlert, Award, LogIn, LogOut, User, CheckCircle2 } from 'lucide-react';
+import { Navigation, MapPin, Users, HeartHandshake, ShieldAlert, Award, LogIn, LogOut, User, CheckCircle2 } from 'lucide-react';
 
 export default function Navbar({
   activeTab,
@@ -19,7 +19,7 @@ export default function Navbar({
         <div className="navbar-inner">
           <div className="brand-wrapper" onClick={() => setActiveTab('planner')}>
             <div className="brand-icon-shield">
-              <Shield size={22} strokeWidth={2.5} />
+              <img src="/logo.png" alt="AlertMitra" className="brand-logo-img" />
             </div>
             <div className="brand-text-block">
               <div className="brand-name">
