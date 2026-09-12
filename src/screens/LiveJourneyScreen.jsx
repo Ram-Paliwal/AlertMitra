@@ -200,7 +200,7 @@ export default function LiveJourneyScreen({
   };
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: 'calc(100vh - 65px)', height: 'calc(100dvh - 65px)', overflow: 'hidden' }}>
+    <div style={{ position: 'relative', width: '100%', height: 'calc(100dvh - 65px)', overflow: 'hidden' }}>
       {/* Top HUD Card: Proactive Navigation & Risk Status */}
       <div className="live-journey-hud">
         <div className="hud-card">
