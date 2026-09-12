@@ -200,31 +200,31 @@ export default function LiveJourneyScreen({
   };
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: 'calc(100vh - 65px)', overflow: 'hidden' }}>
+    <div style={{ position: 'relative', width: '100%', height: 'calc(100vh - 65px)', height: 'calc(100dvh - 65px)', overflow: 'hidden' }}>
       {/* Top HUD Card: Proactive Navigation & Risk Status */}
       <div className="live-journey-hud">
         <div className="hud-card">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-            <div style={{ width: '48px', height: '48px', background: '#0284c7', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '20px' }}>
-              <Navigation size={26} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexWrap: 'wrap' }}>
+            <div style={{ width: '42px', height: '42px', background: '#0284c7', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '18px', flexShrink: 0 }}>
+              <Navigation size={22} />
             </div>
-            <div>
-              <div style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase' }}>
+            <div style={{ minWidth: 0 }}>
+              <div style={{ fontSize: '0.72rem', color: '#94a3b8', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                 DESTINATION: {route?.destinationName?.toUpperCase() || 'TRIP DESTINATION'}
               </div>
-              <div style={{ fontSize: '1.4rem', fontWeight: 800, fontFamily: 'var(--font-heading)' }}>
-                {remainingKm} km remaining <span style={{ color: '#38bdf8', fontSize: '1.1rem' }}>({Math.floor(remainingMinutes / 60)}h {remainingMinutes % 60}m)</span>
+              <div style={{ fontSize: 'clamp(1.1rem, 3.5vw, 1.4rem)', fontWeight: 800, fontFamily: 'var(--font-heading)', lineHeight: 1.2 }}>
+                {remainingKm} km remaining <span style={{ color: '#38bdf8', fontSize: '0.9em' }}>({Math.floor(remainingMinutes / 60)}h {remainingMinutes % 60}m)</span>
               </div>
-              <div style={{ fontSize: '0.8rem', color: '#cbd5e1' }}>
-                Vehicle: <b>{route?.name || 'Active Route'}</b> • {useRealGPS ? '🔴 LIVE DEVICE GPS' : `Progress: km ${currentKm} / ${totalDistanceKm} km`}
+              <div style={{ fontSize: '0.78rem', color: '#cbd5e1', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                {route?.name || 'Active Route'} • {useRealGPS ? '🔴 LIVE GPS' : `km ${currentKm} / ${totalDistanceKm}`}
               </div>
             </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', textAlign: 'right' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', justifyContent: 'space-between', flexWrap: 'wrap' }}>
             <div>
-              <div style={{ fontSize: '0.75rem', color: '#94a3b8', fontWeight: 700 }}>ETA WEATHER</div>
-              <div style={{ fontSize: '0.95rem', fontWeight: 700, color: weatherAtCurrent.riskTier === 'High' ? '#f87171' : '#38bdf8' }}>
+              <div style={{ fontSize: '0.7rem', color: '#94a3b8', fontWeight: 700 }}>ETA WEATHER</div>
+              <div style={{ fontSize: '0.88rem', fontWeight: 700, color: weatherAtCurrent.riskTier === 'High' ? '#f87171' : '#38bdf8' }}>
                 {weatherAtCurrent.condition} ({weatherAtCurrent.temperature}°C)
               </div>
             </div>
@@ -237,7 +237,12 @@ export default function LiveJourneyScreen({
                 color: '#fff',
                 padding: '0.5rem',
                 borderRadius: '50%',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '36px',
+                height: '36px'
               }}
               title={audioEnabled ? 'Mute Audio Alerts' : 'Enable Audio Alerts'}
             >

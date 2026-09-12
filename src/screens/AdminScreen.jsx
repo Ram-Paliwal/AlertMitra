@@ -81,99 +81,101 @@ export default function AdminScreen({
 
       {/* Verification Queue Table */}
       <div className="queue-table-container" style={{ marginBottom: '2.5rem' }}>
-        <div style={{ padding: '1.25rem', borderBottom: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ padding: '1.25rem', borderBottom: '1px solid var(--border-subtle)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
           <h2 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0f172a' }}>
-            Verification Queue ({pendingReports.length} reports awaiting authoritative review)
+            Verification Queue ({pendingReports.length} reports awaiting review)
           </h2>
-          <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-            Click report to inspect evidence & audit timeline
+          <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+            Swipe table horizontally on mobile to view all columns
           </span>
         </div>
 
-        <table className="admin-table">
-          <thead>
-            <tr>
-              <th>Report / Hazard</th>
-              <th>Location</th>
-              <th>Confidence</th>
-              <th>Confirmations</th>
-              <th>Status</th>
-              <th>Evidence</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {pendingReports.map(report => (
-              <tr key={report.id} style={{ cursor: 'pointer' }} onClick={() => setSelectedReport(report)}>
-                <td>
-                  <div style={{ fontWeight: 700, color: '#0f172a' }}>{report.title}</div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>ID: {report.id} • {report.type}</div>
-                </td>
-                <td>
-                  <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>{report.locationName}</div>
-                </td>
-                <td>
-                  <div style={{ fontWeight: 800, color: '#0284c7' }}>{report.confidence}%</div>
-                </td>
-                <td>
-                  <div style={{ fontSize: '0.82rem', fontWeight: 600 }}>
-                    <span style={{ color: '#15803d' }}>+{report.confirmationsCount || 0}</span> / <span style={{ color: '#b91c1c' }}>-{report.notPresentCount || 0}</span>
-                  </div>
-                </td>
-                <td>
-                  <span
-                    className={`hazard-status-pill ${
-                      report.verificationStatus === 'COMMUNITY CORROBORATED' ? 'status-corroborated' : 'status-unverified'
-                    }`}
-                  >
-                    {report.verificationStatus}
-                  </span>
-                </td>
-                <td>
-                  {report.hasPhoto ? (
-                    <span style={{ fontSize: '0.75rem', color: '#0284c7', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '3px' }}>
-                      <Camera size={13} /> Photo
-                    </span>
-                  ) : (
-                    <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Text Only</span>
-                  )}
-                </td>
-                <td>
-                  <div className="admin-action-btn-group" onClick={e => e.stopPropagation()}>
-                    <button
-                      className="admin-btn admin-btn-verify"
-                      onClick={() => handleVerify(report.id)}
-                      title="Verify and publish authoritative warning"
-                    >
-                      VERIFY
-                    </button>
-                    <button
-                      className="admin-btn admin-btn-reject"
-                      onClick={() => handleReject(report.id)}
-                      title="Reject report"
-                    >
-                      REJECT
-                    </button>
-                    <button
-                      className="admin-btn admin-btn-investigate"
-                      onClick={() => handleInvestigate(report.id)}
-                      title="Request field inspection"
-                    >
-                      INVESTIGATE
-                    </button>
-                  </div>
-                </td>
+        <div className="queue-table-scroll">
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>Report / Hazard</th>
+                <th>Location</th>
+                <th>Confidence</th>
+                <th>Confirmations</th>
+                <th>Status</th>
+                <th>Evidence</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {pendingReports.map(report => (
+                <tr key={report.id} style={{ cursor: 'pointer' }} onClick={() => setSelectedReport(report)}>
+                  <td>
+                    <div style={{ fontWeight: 700, color: '#0f172a' }}>{report.title}</div>
+                    <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>ID: {report.id} • {report.type}</div>
+                  </td>
+                  <td>
+                    <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>{report.locationName}</div>
+                  </td>
+                  <td>
+                    <div style={{ fontWeight: 800, color: '#0284c7' }}>{report.confidence}%</div>
+                  </td>
+                  <td>
+                    <div style={{ fontSize: '0.82rem', fontWeight: 600 }}>
+                      <span style={{ color: '#15803d' }}>+{report.confirmationsCount || 0}</span> / <span style={{ color: '#b91c1c' }}>-{report.notPresentCount || 0}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <span
+                      className={`hazard-status-pill ${
+                        report.verificationStatus === 'COMMUNITY CORROBORATED' ? 'status-corroborated' : 'status-unverified'
+                      }`}
+                    >
+                      {report.verificationStatus}
+                    </span>
+                  </td>
+                  <td>
+                    {report.hasPhoto ? (
+                      <span style={{ fontSize: '0.75rem', color: '#0284c7', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '3px' }}>
+                        <Camera size={13} /> Photo
+                      </span>
+                    ) : (
+                      <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Text Only</span>
+                    )}
+                  </td>
+                  <td>
+                    <div className="admin-action-btn-group" onClick={e => e.stopPropagation()}>
+                      <button
+                        className="admin-btn admin-btn-verify"
+                        onClick={() => handleVerify(report.id)}
+                        title="Verify and publish authoritative warning"
+                      >
+                        VERIFY
+                      </button>
+                      <button
+                        className="admin-btn admin-btn-reject"
+                        onClick={() => handleReject(report.id)}
+                        title="Reject report"
+                      >
+                        REJECT
+                      </button>
+                      <button
+                        className="admin-btn admin-btn-investigate"
+                        onClick={() => handleInvestigate(report.id)}
+                        title="Request field inspection"
+                      >
+                        INVESTIGATE
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {/* Admin Report Detail Modal */}
       {selectedReport && (
         <div className="modal-backdrop" onClick={() => setSelectedReport(null)}>
           <div className="modal-content" style={{ maxWidth: '680px' }} onClick={e => e.stopPropagation()}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem', gap: '0.5rem' }}>
               <div>
                 <span style={{ fontSize: '0.75rem', fontWeight: 800, color: '#0284c7', background: '#e0f2fe', padding: '0.2rem 0.5rem', borderRadius: '4px' }}>
                   ADMIN AUDIT CONSOLE • {selectedReport.id}
@@ -193,7 +195,7 @@ export default function AdminScreen({
               </div>
             )}
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1rem', marginBottom: '1.25rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))', gap: '1rem', marginBottom: '1.25rem' }}>
               <div style={{ background: '#f8fafc', padding: '0.85rem', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
                 <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 700 }}>REPORTER DETAILS</div>
                 <div style={{ fontSize: '0.9rem', fontWeight: 700 }}>{selectedReport.reporterName}</div>

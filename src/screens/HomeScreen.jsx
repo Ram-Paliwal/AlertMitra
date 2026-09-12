@@ -255,27 +255,31 @@ export default function HomeScreen({
         {/* Journey Planner Card */}
         <div className="planner-card-container">
           {/* Mode Switcher Tabs */}
-          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.25rem', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.75rem' }}>
+          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.25rem', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.75rem', flexWrap: 'wrap' }}>
             <button
               type="button"
               className={`mode-tab-btn ${plannerMode === 'custom' ? 'active' : ''}`}
               onClick={() => setPlannerMode('custom')}
               style={{
-                padding: '0.45rem 1rem',
+                flex: '1 1 180px',
+                padding: '0.5rem 0.75rem',
                 borderRadius: '8px',
                 border: 'none',
-                background: plannerMode === 'custom' ? '#0284c7' : 'transparent',
+                background: plannerMode === 'custom' ? '#0284c7' : 'var(--bg-surface-subtle)',
                 color: plannerMode === 'custom' ? '#ffffff' : 'var(--text-secondary)',
                 fontWeight: 700,
-                fontSize: '0.85rem',
+                fontSize: '0.82rem',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.4rem'
+                justifyContent: 'center',
+                gap: '0.4rem',
+                minHeight: '38px',
+                transition: 'all 0.15s ease'
               }}
             >
               <Search size={15} />
-              Custom Locations (Any Start & End)
+              <span>Custom Locations</span>
             </button>
 
             <button
@@ -283,21 +287,25 @@ export default function HomeScreen({
               className={`mode-tab-btn ${plannerMode === 'preset' ? 'active' : ''}`}
               onClick={() => setPlannerMode('preset')}
               style={{
-                padding: '0.45rem 1rem',
+                flex: '1 1 180px',
+                padding: '0.5rem 0.75rem',
                 borderRadius: '8px',
                 border: 'none',
-                background: plannerMode === 'preset' ? '#0284c7' : 'transparent',
+                background: plannerMode === 'preset' ? '#0284c7' : 'var(--bg-surface-subtle)',
                 color: plannerMode === 'preset' ? '#ffffff' : 'var(--text-secondary)',
                 fontWeight: 700,
-                fontSize: '0.85rem',
+                fontSize: '0.82rem',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.4rem'
+                justifyContent: 'center',
+                gap: '0.4rem',
+                minHeight: '38px',
+                transition: 'all 0.15s ease'
               }}
             >
               <Navigation size={15} />
-              Pre-mapped Highway Corridors
+              <span>Pre-Mapped Highway Corridors</span>
             </button>
           </div>
 

@@ -16,45 +16,45 @@ export default function ProfileScreen({ rewardsPoints = 450, onAddPoints, curren
   };
 
   return (
-    <div style={{ maxWidth: '1000px', margin: '2rem auto', padding: '0 1.5rem 3rem' }}>
+    <div style={{ maxWidth: '1000px', margin: '1.5rem auto', padding: '0 clamp(1rem, 3vw, 1.5rem) 3rem', width: '100%' }}>
       {/* Profile Header Card */}
-      <div style={{ background: '#ffffff', border: '1px solid var(--border-subtle)', borderRadius: '16px', padding: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1.5rem', marginBottom: '2rem', boxShadow: 'var(--shadow-md)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+      <div style={{ background: '#ffffff', border: '1px solid var(--border-subtle)', borderRadius: '16px', padding: 'clamp(1.25rem, 3.5vw, 2rem)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1.25rem', marginBottom: '2rem', boxShadow: 'var(--shadow-md)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
           {currentUser?.photoURL ? (
             <img
               src={currentUser.photoURL}
               alt={currentUser.displayName}
-              style={{ width: '68px', height: '68px', borderRadius: '50%', objectFit: 'cover', border: '3px solid #0284c7' }}
+              style={{ width: '60px', height: '60px', borderRadius: '50%', objectFit: 'cover', border: '3px solid #0284c7', flexShrink: 0 }}
             />
           ) : (
-            <div style={{ width: '68px', height: '68px', borderRadius: '50%', background: 'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.6rem', fontWeight: 800 }}>
+            <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg, #0284c7 0%, #0369a1 100%)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem', fontWeight: 800, flexShrink: 0 }}>
               {currentUser?.displayName ? currentUser.displayName.slice(0, 2).toUpperCase() : 'AM'}
             </div>
           )}
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem' }}>
-              <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#0f172a' }}>
+          <div style={{ minWidth: 0 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.25rem', flexWrap: 'wrap' }}>
+              <h1 style={{ fontSize: 'clamp(1.25rem, 3vw, 1.5rem)', fontWeight: 800, color: '#0f172a' }}>
                 {currentUser?.displayName || 'Aniket Meshram'}
               </h1>
-              <span style={{ background: '#dcfce7', color: '#15803d', fontSize: '0.75rem', fontWeight: 800, padding: '0.15rem 0.5rem', borderRadius: '20px' }}>
+              <span style={{ background: '#dcfce7', color: '#15803d', fontSize: '0.72rem', fontWeight: 800, padding: '0.15rem 0.5rem', borderRadius: '20px' }}>
                 ✓ {currentUser ? 'Google Verified Citizen' : 'Safety Champion'}
               </span>
             </div>
-            <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+            <p style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
               {currentUser?.email || 'Nagpur Commuter & Registered Good Samaritan • Verified ADAS Telemetry Tag'}
             </p>
           </div>
         </div>
 
         {/* 5th E Points Card */}
-        <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '12px', padding: '1rem 1.5rem', textAlign: 'right' }}>
-          <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#166534', textTransform: 'uppercase' }}>
+        <div style={{ background: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '12px', padding: '0.85rem 1.25rem', flex: '1 1 200px', textAlign: 'left' }}>
+          <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#166534', textTransform: 'uppercase' }}>
             5th 'E' ENCOURAGEMENT REWARDS
           </div>
-          <div style={{ fontSize: '2.2rem', fontWeight: 900, color: '#15803d', fontFamily: 'var(--font-heading)' }}>
-            {rewardsPoints} <span style={{ fontSize: '1rem', fontWeight: 600 }}>pts</span>
+          <div style={{ fontSize: 'clamp(1.8rem, 4vw, 2.2rem)', fontWeight: 900, color: '#15803d', fontFamily: 'var(--font-heading)' }}>
+            {rewardsPoints} <span style={{ fontSize: '0.95rem', fontWeight: 600 }}>pts</span>
           </div>
-          <div style={{ fontSize: '0.78rem', color: '#166534' }}>
+          <div style={{ fontSize: '0.75rem', color: '#166534' }}>
             RFID Signal Adherence & Safe Headway
           </div>
         </div>
@@ -77,7 +77,7 @@ export default function ProfileScreen({ rewardsPoints = 450, onAddPoints, curren
           Standardized under CSIR-CRRI Vienna Reaction Test & Mobileye ADAS telemetry benchmarks.
         </p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))', gap: '1rem' }}>
           <div style={{ background: '#ffffff', border: '1px solid var(--border-subtle)', borderRadius: '12px', padding: '1.25rem' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem', color: '#0284c7' }}>
               <Activity size={18} />
@@ -120,7 +120,7 @@ export default function ProfileScreen({ rewardsPoints = 450, onAddPoints, curren
           </div>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 260px), 1fr))', gap: '1rem' }}>
           {[
             { title: 'HPCL Fuel Voucher', discount: '₹150 OFF', cost: 200, icon: '⛽', merchant: 'HPCL Petrol Pump, Wardha Rd' },
             { title: 'Vehicle Safety & Brake Checkup', discount: 'FREE Inspection', cost: 150, icon: '🔧', merchant: 'Mahindra Service Center, MIDC' },

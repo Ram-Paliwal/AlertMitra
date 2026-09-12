@@ -199,11 +199,27 @@ export default function RouteAnalysisScreen({
       {/* Right Map View Area */}
       <main className="map-view-container">
         {/* Layer Filter Toggles Floating Top-Left */}
-        <div style={{ position: 'absolute', top: 15, left: 15, zIndex: 500, display: 'flex', gap: '0.4rem', flexWrap: 'wrap', maxWidth: '75%' }}>
+        <div
+          style={{
+            position: 'absolute',
+            top: 12,
+            left: 12,
+            right: 12,
+            zIndex: 500,
+            display: 'flex',
+            gap: '0.4rem',
+            overflowX: 'auto',
+            paddingBottom: '4px',
+            WebkitOverflowScrolling: 'touch',
+            scrollbarWidth: 'none',
+            maxWidth: 'calc(100% - 24px)',
+            pointerEvents: 'auto'
+          }}
+        >
           <button
             onClick={() => toggleLayer('blackspots')}
             style={{
-              padding: '0.35rem 0.75rem',
+              padding: '0.4rem 0.75rem',
               borderRadius: '20px',
               border: '1px solid #ef4444',
               background: layerFilters.blackspots ? '#ef4444' : '#ffffff',
@@ -211,7 +227,10 @@ export default function RouteAnalysisScreen({
               fontSize: '0.75rem',
               fontWeight: 700,
               cursor: 'pointer',
-              boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+              boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+              minHeight: '32px'
             }}
           >
             ● 38 Blackspots
@@ -219,7 +238,7 @@ export default function RouteAnalysisScreen({
           <button
             onClick={() => toggleLayer('greyspots')}
             style={{
-              padding: '0.35rem 0.75rem',
+              padding: '0.4rem 0.75rem',
               borderRadius: '20px',
               border: '1px solid #f59e0b',
               background: layerFilters.greyspots ? '#f59e0b' : '#ffffff',
@@ -227,7 +246,10 @@ export default function RouteAnalysisScreen({
               fontSize: '0.75rem',
               fontWeight: 700,
               cursor: 'pointer',
-              boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+              boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+              minHeight: '32px'
             }}
           >
             ● 33 Greyspots
@@ -235,7 +257,7 @@ export default function RouteAnalysisScreen({
           <button
             onClick={() => toggleLayer('hazards')}
             style={{
-              padding: '0.35rem 0.75rem',
+              padding: '0.4rem 0.75rem',
               borderRadius: '20px',
               border: '1px solid #2563eb',
               background: layerFilters.hazards ? '#2563eb' : '#ffffff',
@@ -243,7 +265,10 @@ export default function RouteAnalysisScreen({
               fontSize: '0.75rem',
               fontWeight: 700,
               cursor: 'pointer',
-              boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+              boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+              minHeight: '32px'
             }}
           >
             ▲ Community ({hazards.filter(h => h.verificationStatus !== 'EXPIRED').length})
@@ -251,7 +276,7 @@ export default function RouteAnalysisScreen({
           <button
             onClick={() => toggleLayer('trystander')}
             style={{
-              padding: '0.35rem 0.75rem',
+              padding: '0.4rem 0.75rem',
               borderRadius: '20px',
               border: '1px solid #0891b2',
               background: layerFilters.trystander ? '#0891b2' : '#ffffff',
@@ -259,7 +284,10 @@ export default function RouteAnalysisScreen({
               fontSize: '0.75rem',
               fontWeight: 700,
               cursor: 'pointer',
-              boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+              boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+              minHeight: '32px'
             }}
           >
             ✚ 8 Trystander Cells

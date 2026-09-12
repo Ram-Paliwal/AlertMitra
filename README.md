@@ -11,6 +11,12 @@
 
 ---
 
+### 🌐 Live Production Application
+👉 **Direct Link:** **[https://alertmitra.vercel.app](https://alertmitra.vercel.app)**  
+*Instant access — experience live route risk analysis, blackspot geofences, real-time hazard reporting, and navigation simulation.*
+
+---
+
 ## 🌟 Overview
 
 Conventional navigation systems focus primarily on speed and travel time. **AlertMitra** is built on the **Vision Zero** philosophy: road fatalities and severe injuries are preventable through proactive intelligence.
@@ -173,8 +179,14 @@ npm run build
 
 ## ☁️ Deployment
 
+### 🌐 Live Production URLs
+| Environment | URL | Status |
+|---|---|---|
+| **Production** | **[https://alertmitra.vercel.app](https://alertmitra.vercel.app)** | ✅ Live |
+| **Direct Edge Deployment** | [alertmitra-dj4pvoflh-kalyug-ke-ram-s-projects.vercel.app](https://alertmitra-dj4pvoflh-kalyug-ke-ram-s-projects.vercel.app) | ✅ Live |
+
 ### Deploy to Vercel
-Deploying with Vercel CLI:
+Deploying updates with Vercel CLI:
 ```bash
 npx vercel --prod
 ```

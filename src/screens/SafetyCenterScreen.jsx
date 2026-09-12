@@ -117,10 +117,10 @@ export default function SafetyCenterScreen() {
           </span>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '1rem' }}>
           {TRYSTANDER_CELLS.map(cell => (
             <div key={cell.id} style={{ background: '#ffffff', border: '1px solid var(--border-subtle)', borderRadius: '10px', padding: '1.1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.25rem' }}>
                 <span style={{ fontSize: '0.72rem', fontWeight: 800, color: '#0891b2', background: '#ecfeff', padding: '0.15rem 0.45rem', borderRadius: '4px' }}>
                   {cell.blackspotId} • RADMC CELL
                 </span>
@@ -145,9 +145,9 @@ export default function SafetyCenterScreen() {
                   LEAD GOOD SAMARITAN EMERGENCY CONTACTS:
                 </div>
                 {cell.leadSamaritans.slice(0, 2).map((sam, i) => (
-                  <div key={i} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', marginBottom: '0.2rem' }}>
+                  <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.78rem', marginBottom: '0.35rem', flexWrap: 'wrap', gap: '0.25rem' }}>
                     <span>{sam.name} ({sam.role.split('/')[0]})</span>
-                    <a href={`tel:${sam.phone.replace(/[^0-9+]/g, '')}`} style={{ color: '#0284c7', fontWeight: 700, textDecoration: 'none' }}>
+                    <a href={`tel:${sam.phone.replace(/[^0-9+]/g, '')}`} style={{ color: '#0284c7', fontWeight: 700, textDecoration: 'none', padding: '2px 6px', background: '#e0f2fe', borderRadius: '4px' }}>
                       {sam.phone}
                     </a>
                   </div>
@@ -164,7 +164,7 @@ export default function SafetyCenterScreen() {
           Trauma Care Hospitals & Police Stations
         </h2>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '1rem' }}>
           {EMERGENCY_SERVICES.hospitals.map((hosp, i) => (
             <div key={i} style={{ background: '#ffffff', border: '1px solid var(--border-subtle)', borderRadius: '10px', padding: '1.1rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>

@@ -46,19 +46,19 @@ export default function HazardDetailModal({ hazard, onClose, onConfirmHazard }) 
         </p>
 
         {/* Key Metrics Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '0.75rem', marginBottom: '1.25rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 110px), 1fr))', gap: '0.65rem', marginBottom: '1.25rem' }}>
           {isBlackspot && (
             <>
               <div style={{ background: '#f8fafc', padding: '0.75rem', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 700 }}>TOTAL CRASHES</div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 700 }}>TOTAL CRASHES</div>
                 <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#ef4444' }}>{hazard.totalCrashes || 0}</div>
               </div>
               <div style={{ background: '#f8fafc', padding: '0.75rem', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 700 }}>FATALITIES</div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 700 }}>FATALITIES</div>
                 <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#991b1b' }}>{hazard.fatalities || 0}</div>
               </div>
               <div style={{ background: '#f8fafc', padding: '0.75rem', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 700 }}>MAJOR INJURIES</div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 700 }}>MAJOR INJURIES</div>
                 <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#d97706' }}>{hazard.majorInjuries || 0}</div>
               </div>
             </>
@@ -67,14 +67,14 @@ export default function HazardDetailModal({ hazard, onClose, onConfirmHazard }) 
           {isGreyspot && (
             <>
               <div style={{ background: '#f8fafc', padding: '0.75rem', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 700 }}>SEVERITY INDEX</div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 700 }}>SEVERITY INDEX</div>
                 <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#d97706' }}>
                   {hazard.severityScore ? (hazard.severityScore * 100).toFixed(0) : '78'}/100
                 </div>
               </div>
               <div style={{ background: '#f8fafc', padding: '0.75rem', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 700 }}>ADAS ALERTS</div>
-                <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#0f172a' }}>{hazard.adasDominantAlert || 'FCW, HMW'}</div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 700 }}>ADAS ALERTS</div>
+                <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#0f172a' }}>{hazard.adasDominantAlert || 'FCW, HMW'}</div>
               </div>
             </>
           )}
@@ -82,18 +82,18 @@ export default function HazardDetailModal({ hazard, onClose, onConfirmHazard }) 
           {isTrystander && (
             <>
               <div style={{ background: '#f8fafc', padding: '0.75rem', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 700 }}>GOOD SAMARITANS</div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 700 }}>GOOD SAMARITANS</div>
                 <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0891b2' }}>{hazard.selectedSamaritansCount}</div>
               </div>
               <div style={{ background: '#f8fafc', padding: '0.75rem', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 700 }}>LIVES SAVED</div>
+                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 700 }}>LIVES SAVED</div>
                 <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#10b981' }}>{hazard.victimsHelped}</div>
               </div>
             </>
           )}
 
           <div style={{ background: '#f8fafc', padding: '0.75rem', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-            <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 700 }}>CONFIDENCE</div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 700 }}>CONFIDENCE</div>
             <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0284c7' }}>
               {hazard.confidence || (isBlackspot ? '94%' : isGreyspot ? '88%' : '82%')}
             </div>
@@ -102,11 +102,11 @@ export default function HazardDetailModal({ hazard, onClose, onConfirmHazard }) 
 
         {/* Why Flagged */}
         <div style={{ marginBottom: '1.25rem' }}>
-          <h4 style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--text-secondary)', textTransform: 'uppercase', marginBottom: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+          <h4 style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-secondary)', textTransform: 'uppercase', marginBottom: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
             <Info size={15} color="#0284c7" />
             Why This Location Was Flagged
           </h4>
-          <p style={{ fontSize: '0.88rem', color: 'var(--text-primary)', background: '#f8fafc', padding: '0.85rem', borderRadius: '8px', border: '1px solid #e2e8f0', lineHeight: 1.5 }}>
+          <p style={{ fontSize: '0.85rem', color: 'var(--text-primary)', background: '#f8fafc', padding: '0.85rem', borderRadius: '8px', border: '1px solid #e2e8f0', lineHeight: 1.5 }}>
             {hazard.whyFlagged || hazard.observedIssues || hazard.description || 'Identified via multi-factor statistical and sensory collision cluster analysis.'}
           </p>
         </div>
@@ -114,11 +114,11 @@ export default function HazardDetailModal({ hazard, onClose, onConfirmHazard }) 
         {/* Countermeasures / Status if Blackspot or Greyspot */}
         {(hazard.remedialMeasures || hazard.suggestedRemedialMeasures) && (
           <div style={{ marginBottom: '1.25rem' }}>
-            <h4 style={{ fontSize: '0.88rem', fontWeight: 700, color: '#15803d', textTransform: 'uppercase', marginBottom: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+            <h4 style={{ fontSize: '0.85rem', fontWeight: 700, color: '#15803d', textTransform: 'uppercase', marginBottom: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
               <ShieldCheck size={15} />
               Engineering Countermeasures (DPR / GDP)
             </h4>
-            <div style={{ background: '#f0fdf4', padding: '0.85rem', borderRadius: '8px', border: '1px solid #bbf7d0', fontSize: '0.85rem', color: '#166534', lineHeight: 1.5 }}>
+            <div style={{ background: '#f0fdf4', padding: '0.85rem', borderRadius: '8px', border: '1px solid #bbf7d0', fontSize: '0.82rem', color: '#166534', lineHeight: 1.5 }}>
               <div><b>Interventions:</b> {hazard.remedialMeasures || hazard.suggestedRemedialMeasures}</div>
               {hazard.costEstimate && <div style={{ marginTop: '0.35rem' }}><b>Cost Estimate:</b> {hazard.costEstimate} ({hazard.expectedCrashReduction})</div>}
               {hazard.status && <div style={{ marginTop: '0.2rem' }}><b>Implementation Status:</b> {hazard.status}</div>}
@@ -128,20 +128,20 @@ export default function HazardDetailModal({ hazard, onClose, onConfirmHazard }) 
 
         {/* Traveler Advice */}
         <div style={{ marginBottom: '1.5rem' }}>
-          <h4 style={{ fontSize: '0.88rem', fontWeight: 700, color: '#92400e', textTransform: 'uppercase', marginBottom: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+          <h4 style={{ fontSize: '0.85rem', fontWeight: 700, color: '#92400e', textTransform: 'uppercase', marginBottom: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
             <AlertTriangle size={15} color="#d97706" />
             Traveler Safety Advice
           </h4>
-          <div style={{ background: '#fffbeb', padding: '0.85rem', borderRadius: '8px', border: '1px solid #fde68a', fontSize: '0.88rem', color: '#92400e', fontWeight: 500, lineHeight: 1.45 }}>
+          <div style={{ background: '#fffbeb', padding: '0.85rem', borderRadius: '8px', border: '1px solid #fde68a', fontSize: '0.85rem', color: '#92400e', fontWeight: 500, lineHeight: 1.45 }}>
             {hazard.travelerAdvice || 'Reduce speed, remain alert to merging two-wheelers and pedestrians, and maintain a 3-second safe headway distance.'}
-            <div style={{ marginTop: '0.4rem', fontSize: '0.75rem', color: '#b45309' }}>
+            <div style={{ marginTop: '0.4rem', fontSize: '0.72rem', color: '#b45309' }}>
               * AlertMitra communicates risk exposure, never certainty of an incident.
             </div>
           </div>
         </div>
 
         {/* Data Provenance Footer */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '1rem', borderTop: '1px solid #e2e8f0', fontSize: '0.78rem', color: 'var(--text-muted)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '1rem', borderTop: '1px solid #e2e8f0', fontSize: '0.75rem', color: 'var(--text-muted)', flexWrap: 'wrap', gap: '0.75rem' }}>
           <div>
             <b>Source:</b> {hazard.source || 'Project iRASTE Nagpur / CSIR-CRRI Road Safety Dataset'}
           </div>
@@ -153,7 +153,8 @@ export default function HazardDetailModal({ hazard, onClose, onConfirmHazard }) 
               border: '1px solid #cbd5e1',
               background: '#ffffff',
               fontWeight: 600,
-              cursor: 'pointer'
+              cursor: 'pointer',
+              minHeight: '36px'
             }}
           >
             Close Details

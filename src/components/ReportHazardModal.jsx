@@ -123,30 +123,32 @@ export default function ReportHazardModal({ isOpen, onClose, onSubmitReport }) {
               <label className="input-label" style={{ marginBottom: '0.45rem' }}>
                 1. Select Hazard Type
               </label>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.45rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.4rem' }}>
                 {HAZARD_CATEGORIES.map(cat => (
                   <button
                     type="button"
                     key={cat.id}
                     onClick={() => setCategory(cat.id)}
                     style={{
-                      padding: '0.55rem 0.35rem',
+                      padding: '0.5rem 0.25rem',
                       borderRadius: '8px',
                       border: category === cat.id ? '2px solid #0284c7' : '1px solid #e2e8f0',
                       background: category === cat.id ? '#f0f9ff' : '#ffffff',
                       color: category === cat.id ? '#0284c7' : 'var(--text-primary)',
-                      fontSize: '0.78rem',
+                      fontSize: '0.74rem',
                       fontWeight: 600,
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
+                      justifyContent: 'center',
                       gap: '0.2rem',
                       cursor: 'pointer',
-                      transition: 'all 0.15s ease'
+                      transition: 'all 0.15s ease',
+                      minHeight: '44px'
                     }}
                   >
-                    <span style={{ fontSize: '1.1rem' }}>{cat.icon}</span>
-                    <span>{cat.label}</span>
+                    <span style={{ fontSize: '1.1rem', lineHeight: 1 }}>{cat.icon}</span>
+                    <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '100%' }}>{cat.label}</span>
                   </button>
                 ))}
               </div>
@@ -154,7 +156,7 @@ export default function ReportHazardModal({ isOpen, onClose, onSubmitReport }) {
 
             {/* 2. GPS Location */}
             <div style={{ marginBottom: '1.1rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.35rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.35rem', flexWrap: 'wrap', gap: '0.25rem' }}>
                 <label className="input-label">2. Location (GPS)</label>
                 <button
                   type="button"
@@ -168,11 +170,12 @@ export default function ReportHazardModal({ isOpen, onClose, onSubmitReport }) {
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '0.25rem'
+                    gap: '0.25rem',
+                    padding: '2px 0'
                   }}
                 >
                   <MapPin size={12} />
-                  {isLocating ? 'Acquiring GPS...' : 'Auto-Capture Current GPS'}
+                  {isLocating ? 'Acquiring GPS...' : 'Auto-Capture GPS'}
                 </button>
               </div>
               <input
